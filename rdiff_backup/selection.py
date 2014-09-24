@@ -537,19 +537,19 @@ probably isn't what you meant.""" %
 		if min_max:
 			# max case
 			def sel_func(rp):
-			if rp.getsize() <= size: # filesize is < max
-				return None # proceed with next condition
-			else:
-				return 0
-			#sel_func = lambda rp: (rp.getsize() >= size)
+				if rp.getsize() <= size: # filesize is < max
+					return None # proceed with next condition
+				else:
+					return 0
+				#sel_func = lambda rp: (rp.getsize() >= size)
 		else:
 			# min case
 			def sel_func(rp):
-			if rp.getsize() >= size: # filesize is > min
-				return None # proceed with next condition
-			else:
-				return 0
-			#sel_func = lambda rp: (rp.getsize() >= size)
+				if rp.getsize() >= size: # filesize is > min
+					return None # proceed with next condition
+				else:
+					return 0
+				#sel_func = lambda rp: (rp.getsize() >= size)
 #TODO END
 
 		sel_func.exclude = 1
