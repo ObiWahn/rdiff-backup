@@ -252,7 +252,7 @@ class Select:
 				elif opt == "--exclude-globbing-filelist":
 					map(self.add_selection_func,
 						self.filelist_globbing_get_sfs(
-						           filelists[filelists_index], 0, arg))
+							   filelists[filelists_index], 0, arg))
 					filelists_index += 1
 				elif opt == "--exclude-other-filesystems":
 					self.add_selection_func(self.other_filesystems_get_sf(0))
@@ -269,7 +269,7 @@ class Select:
 				elif opt == "--include-globbing-filelist":
 					map(self.add_selection_func,
 						self.filelist_globbing_get_sfs(
-						          filelists[filelists_index], 1, arg))
+							  filelists[filelists_index], 1, arg))
 					filelists_index += 1
 				elif opt == "--include-regexp":
 					self.add_selection_func(self.regexp_get_sf(arg, 1))
@@ -506,16 +506,16 @@ probably isn't what you meant.""" %
 		"""Return a selection function matching all dev files"""
 		return self.gen_get_sf(rpath.RORPath.isdev, include, "device files")
 
- 	def symlinks_get_sf(self, include):
- 		"""Return a selection function matching all symlinks"""
+	def symlinks_get_sf(self, include):
+		"""Return a selection function matching all symlinks"""
 		return self.gen_get_sf(rpath.RORPath.issym, include, "symbolic links")
 
- 	def sockets_get_sf(self, include):
- 		"""Return a selection function matching all sockets"""
+	def sockets_get_sf(self, include):
+		"""Return a selection function matching all sockets"""
 		return self.gen_get_sf(rpath.RORPath.issock, include, "socket files")
 
- 	def fifos_get_sf(self, include):
- 		"""Return a selection function matching all fifos"""
+	def fifos_get_sf(self, include):
+		"""Return a selection function matching all fifos"""
 		return self.gen_get_sf(rpath.RORPath.isfifo, include, "fifo files")
 
 	def special_get_sf(self, include):
