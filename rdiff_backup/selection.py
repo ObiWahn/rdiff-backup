@@ -1,3 +1,4 @@
+# vim: tabstop=4 shiftwidth=4 noexpandtab 
 # Copyright 2002 Ben Escoto
 #
 # This file is part of rdiff-backup.
@@ -531,10 +532,26 @@ probably isn't what you meant.""" %
 		"""Return selection function given by filesize"""
 		size = int(sizestr)
 		assert size > 0
-		def sel_func(rp):
-			if not rp.isreg(): return None
-			if min_max: return ((rp.getsize() <= size) and None)
-			else: return ((rp.getsize() >= size) and None)
+
+#TODO - possible fix for BUG29808 - test/verify!
+		if min_max:
+			# max case
+			def sel_func(rp):
+			if rp.getsize() <= size: # filesize is < max
+				return None # proceed with next condition
+			else:
+				return 0
+			#sel_func = lambda rp: (rp.getsize() >= size)
+		else:
+			# min case
+			def sel_func(rp):
+			if rp.getsize() >= size: # filesize is > min
+				return None # proceed with next condition
+			else:
+				return 0
+			#sel_func = lambda rp: (rp.getsize() >= size)
+#TODO END
+
 		sel_func.exclude = 1
 		sel_func.name = "%s size %d" % (min_max and "Maximum" or "Minimum", size)
 		return sel_func
